@@ -1,0 +1,14 @@
+blockdiag {
+  orientation = landscape;
+  default_fontsize = 14;
+  node_width = 180;
+
+
+  base-notebook -> minimal-notebook;
+  minimal-notebook -> scipy-notebook;
+  scipy-notebook -> tensorflow-notebook;
+  scipy-notebook -> datascience-notebook;
+  minimal-notebook -> r-notebook;
+  scipy-notebook -> pyspark-notebook;
+  pyspark-notebook -> all-spark-notebook;
+}
