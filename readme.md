@@ -1,10 +1,10 @@
 # Computational Publishing with Jupyter
 
-As first described in [Embracing Jupyter Notebooks at O'Reilly](https://www.oreilly.com/ideas/jupyter-at-oreilly), Jupyter is a critical tool.  The intervening time between when that was written and today has only confirmed it.  In fact, I'd be so bold as say that Jupyter is the  most important tool for technical publishers since the Laser Writer and Aldus PageMaker.
+As first described in [Embracing Jupyter Notebooks at O'Reilly](https://www.oreilly.com/ideas/jupyter-at-oreilly), Jupyter is a critical tool.  Time has only confirmed it -- I'd wager that Jupyter is on the shortlist as the most important tool for technical publishers since the Laser Writer and Aldus PageMaker.
 
-The reason?  Jupyter is one of the first digital *authoring* tools, as opposed to a bespoke software development process, that begins to deliver on Seymour Papert's [constructivist](http://www.papert.org/articles/SituatingConstructionism.html) vision that people learn best by actively making and doing, versus passively reading, listening, or watching.
+The reason?  Jupyter is one of the first digital *authoring* tools, as opposed to a bespoke software development process, that delivers on Seymour Papert's [constructivist](http://www.papert.org/articles/SituatingConstructionism.html) vision.
 
-This idea has been explored in Brett Victor's seminal 2011 essay [Explorable Explanations](http://worrydream.com/ExplorableExplanations/), as well as [Lorena Barba](http://lorenabarba.com/)'s vision of [computable content](https://bids.berkeley.edu/events/computational-thinking-and-pedagogy-computable-content).  
+Papert's ideas, explored in a modern digital context in Brett Victor's seminal 2011 essay [Explorable Explanations](http://worrydream.com/ExplorableExplanations/), as well as [Lorena Barba](http://lorenabarba.com/)'s vision of [computable content](https://bids.berkeley.edu/events/computational-thinking-and-pedagogy-computable-content), posits that people learn best by actively making and doing, versus passively reading, listening, or watching.  
 
 <img src="images/explorable-explanations.gif"/>
 _Brett Victor / [Explorable Explanations](http://worrydream.com/ExplorableExplanations/)_
@@ -15,19 +15,42 @@ As we [surveyed the landscape of tools](http://odewahn.github.io/patterns-of-cod
 * Mixed video, text, and assessment.  A Jupyter document can consist of a rich set of media of all types.  Basically, anything that run in a browser will run in Jupyter.
 * Code + data.  Combining a notebook with a tool like git or dat allows you to easily package your code and data.
 * Collaboration.  With git and github, you can package your content and all assets and post them to the many public git hosting services, such as GitHub, BitBucket, or GitLab.
+* Multi-language support.  Jupyter's kernel-based design means that new languages and services are relatively easy to incorporate.
 * Discovery and citation.  Services like [Zenodo](https://zenodo.org/) make it simple to assign DOIs to Notebook content so that they can be cited in scholarly publications.
-* Reproducibility and preservation.  You need to only add a Dockerfile or some other mechanism to specify the project's dependencies (such as the appropriate Ansible playbooks) in order to fully recreate the environment required for the Notebook content to run.  And, since these are stored as Git files, it is simple to keep the content available so that you can reconstruct at any time, as opposed to keeping the running environment, which is challenging.
+* Reproducibility and preservation.  You need to only add a Dockerfile or some other mechanism to specify the project's dependencies (such as the appropriate Ansible playbooks) in order to fully recreate the environment required for the Notebook content to run.  And, since these are stored as Git files, it is simple to keep the content available so that you can reconstruct at any time, as opposed to keeping the running environment.
 
-
+SOMETHING THAT TIES THIS BEYOND PUBLISHING TO A GENERAL SET OF COLBORATION AND SHARING IN A COMPUTATION-HEAVY ENVIRONMENT.
 
 ### Challenges
 
+Clearly, Jupyter provides a host of benefits and opportunities.  However, despite the promise, it's widespread adoption outside the programming, scientific, and data science community has been hindered by its relatively high barriers to entry of the overall ecosystem.
+
+As a tool built by hackers for hackers, realizing the full potential of Jupyter requires the user to understand several tools typically used in software engineering.  For authors used to working in Word or Google Docs, Jupyter's reliance on Git, GitHub, package managers, and software configuration tools can be a overwhemling.  This is magnified when the tool is moved outside a purely technical area, such as biology, economics, journalism, or library sciences.
+
+In addition to the steep learning curve, our experience in trying to build a robust workflow for publishing with Jupyter indicates that even very technical and experienced authors have a hard time creating reproducible environments.  This usually manifests in a broken library or call within a notebooks (i.e., the content uses something that is not on the base image).
 
 ## A Model for Computational Publishing
 
+We've developed a four-part model to help us realize Jupyter's potential:
+
 <img width="100%" src="images/computational-publishing-model.png"/>
 
+The following sections detail the each of the following components:
+
+* Source content
+* Machine image
+* Runtime engine
+* File sharing
+
 ### Source Content
+
+The source content is largely about how you manage the source files that make up the project.  This consists not only of your text content, but also any data, images, or configuration files.  Our experience largely boils down to the following three principles:
+
+* Version control with git
+* Structured markup
+* Transformation engines
+
+The following sections explore each in a bit more detail.
 
 #### Version control in git
 
