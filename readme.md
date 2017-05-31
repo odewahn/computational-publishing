@@ -1,3 +1,6 @@
+## This is draft for an article I'm working on for O'Reilly Media about the Jupyter Publishing landscape.  If you have any thoughts you'd care to share, please post an issue!
+
+
 # Computational Publishing with Jupyter
 
 As first described in [Embracing Jupyter Notebooks at O'Reilly](https://www.oreilly.com/ideas/jupyter-at-oreilly), Jupyter is a critical tool.  Time has only strengthened this conviction -- I'd wager that Jupyter is on the shortlist for the most important tool for technical publishers since the Laser Writer and Aldus PageMaker.
@@ -18,7 +21,7 @@ As we [surveyed the landscape of tools](http://odewahn.github.io/patterns-of-cod
 * Collaboration.  With git and github, you can package your content and all assets and post them to the many public git hosting services, such as GitHub, BitBucket, or GitLab.
 * Multi-language support.  Jupyter's kernel-based design means that new languages and services are relatively easy to incorporate.
 * Discovery and citation.  Services like [Zenodo](https://zenodo.org/) make it simple to assign DOIs to Notebook content so that they can be cited in scholarly publications.
-* Reproducibility and preservation.  You need to only add a Dockerfile (or an equivalent tool, like Ansible playbooks) to specify the project's dependencies in order to fully recreate the environment required for the Notebook content to run.  And, since these are stored as Git files, it is simple to keep the content available so that you can reconstruct at any time, as opposed to keeping the running environment.
+* Reproducibility and preservation.  You need to only add a Dockerfile (or an equivalent tool, like Ansible playbooks) to specify the project's dependencies in order to fully recreate the environment required for the Notebook content to run.  And, since these are stored as Git files, it is simple to keep the content around so that you can reconstruct at any time, as opposed to keeping the running environment.
 
 ### Challenges
 
