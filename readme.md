@@ -1,6 +1,6 @@
 # Computational Publishing with Jupyter
 
-As first described in [Embracing Jupyter Notebooks at O'Reilly](https://www.oreilly.com/ideas/jupyter-at-oreilly), Jupyter is a critical tool.  Time has only confirmed it -- I'd wager that Jupyter is on the shortlist as the most important tool for technical publishers since the Laser Writer and Aldus PageMaker.
+As first described in [Embracing Jupyter Notebooks at O'Reilly](https://www.oreilly.com/ideas/jupyter-at-oreilly), Jupyter is a critical tool.  Time has only strengthened this conviction -- I'd wager that Jupyter is on the shortlist as the most important tool for technical publishers since the Laser Writer and Aldus PageMaker.
 
 The reason?  Jupyter is one of the first digital *authoring* tools, as opposed to a bespoke software development process, that delivers on Seymour Papert's [constructivist](http://www.papert.org/articles/SituatingConstructionism.html) vision.
 
@@ -25,7 +25,7 @@ SOMETHING THAT TIES THIS BEYOND PUBLISHING TO A GENERAL SET OF COLBORATION AND S
 
 Clearly, Jupyter provides a host of benefits and opportunities.  However, despite the promise, it's widespread adoption outside the programming, scientific, and data science community has been hindered by its relatively high barriers to entry of the overall ecosystem.
 
-As a tool built by hackers for hackers, realizing the full potential of Jupyter requires the user to understand several tools typically used in software engineering.  For authors used to working in Word or Google Docs, Jupyter's reliance on Git, GitHub, package managers, and software configuration tools can be a overwhemling.  This is magnified when the tool is moved outside a purely technical area, such as biology, economics, journalism, or library sciences.
+As a tool built by hackers for hackers, realizing the full potential of Jupyter requires the user to understand several tools typically used in software engineering.  For authors used to working in Word or Google Docs, Jupyter's reliance on Git, GitHub, package managers, and software configuration tools can be a overwhelming.  The gap is magnified when it's applied outside of a purely technical area, such as biology, economics, journalism, or library sciences.
 
 In addition to the steep learning curve, our experience in trying to build a robust workflow for publishing with Jupyter indicates that even very technical and experienced authors have a hard time creating reproducible environments.  This usually manifests in a broken library or call within a notebooks (i.e., the content uses something that is not on the base image).
 
@@ -111,7 +111,7 @@ A `machine image` is a way to create a complete description of a computing envir
 * Jupyter dependencies
 * Content-specific dependencies
 
-While there are still other alternatiecs, such a [Rocket](https://coreos.com/rkt) from CoreOS, the Jupyter community is generally settling around Docker as a standard format for representing a machine image.
+While there are still other alternatives, such a [Rocket](https://coreos.com/rkt) from CoreOS, the Jupyter community is generally settling around Docker as a standard format for representing a machine image.
 
 #### Jupyter Dependencies
 
@@ -167,7 +167,7 @@ CMD jupyter notebook --no-browser --port 8888 --ip=*
 
 Combining the right base image with the language/OS-specific package managers in the Dockerfile is quickly emerging as a defacto standard in the community for specifying a project's machine image.  
 
-As an additional benefit, adding the  Dockerfile to the project creates a simple way to link the machin image to the content in a way that is simple to version and track using git.
+As an additional benefit, adding the  Dockerfile to the project creates a simple way to link the machine image to the content in a way that is simple to version and track using git.
 
 ### Runtime Engine
 
@@ -182,7 +182,7 @@ The figure is broken down along two major axes:
 * Whether the runtime is for a single-user of multi-users
 * Whether the runtime is based on a local machine, or the cloud
 
-In Quadrant 1, we have single user solution running on a host machine, such as a local laptop.  This scenario is generally for the user who installs jupyter using Conda on his or her laptop, and then uses conda (or pip) to install the content specific dependencies.  While this is a relatively simple setup, it makes it difficult to share the setup for the computing environment, and often requires an additional isolation tool (like [virtualenv](https://virtualenv.pypa.io/en/stable/)) to isolate the different version of libraries and python versions across content projects.
+In Quadrant 1, we have single user solution running on a host machine, such as a local laptop.  This scenario is generally for the user who installs Jupyter using Conda on his or her laptop, and then uses Conda (or pip) to install the content specific dependencies.  While this is a relatively simple setup, it makes it difficult to share the setup for the computing environment, and often requires an additional isolation tool (like [virtualenv](https://virtualenv.pypa.io/en/stable/)) to isolate the different version of libraries and python versions across content projects.
 
 Quadrant 2 represents a multiuser environment deployed in the user's own datacenter or cloud account.  Solutions like [JupyterHub](https://github.com/jupyterhub/jupyterhub) or [Binder](http://mybinder.org/) make it simple for a central adminstrator ot IT organization to provide a "notebook on demand," eliminating the need for a complex local install.  The downside to this approach is that it requires a central administration with the expertise to install and operate the cluster.
 
@@ -190,17 +190,32 @@ Quadrant 3 is for a single user syste running on a VM or container solution on a
 
 Finally, Quadrant 4 is for multiuser solutions in a pure cloud. The best examples are Microsoft's [Azure Notebooks](https://notebooks.azure.com/)and the [Domino DataLab](https://www.dominodatalab.com/).  The advantag of these solutions is that they provide a turnkey way to easily provide a large user population with notebooks, but the downside is (often) expense, vendor lock-in, and (often) the inability to use git in the workflow.
 
-
 ### File Sharing
 
-The final aspect of the computational publishing workflow is a way to propogate changes made to the content within the running container back to the source content.  In other words, we want to ensure that when a user makes a change in the notebook and hits save, that those changes are made to the local git repo, and not to an ephemeral filesystem in a container.  
+The final aspect of the computational publishing workflow is a way to save changes made to the content within the running container back to the source content.  In other words, we want to ensure that when a user makes a change in the notebook and hits save, those changes are made to the local git repo, and not to the ephemeral filesystem in a container.  
 
-Docker provides a number of ways to do this, such as [volume mounting](https://docs.docker.com/engine/tutorials/dockervolumes/), and cloud solutions provide their own storage backends.  Some solutions, such as [Binder](http://mybinder.org/), do not persist changes automatically.
+Docker provides a number of ways to do this, such as [volume mounting](https://docs.docker.com/engine/tutorials/dockervolumes/), and cloud solutions provide their own storage backends.  Other container solutions, such as [Binder](http://mybinder.org/) or [tmpnb](https://github.com/jupyter/tmpnb), do not persist user changes automatically.
 
-### LaunchBot: Lowering the barriers to entry
+### LaunchBot: Lowering the Barriers to Entry for Computational Publishing
+
+As the previous section illustrates, the Jupyter Notebook application is just one part of the overall publishing process.  To be effective, a user must also understand git and GitHub, dependency management, and other disjointed tools.
+
+O'Reilly has been incubating a new tool called [LaunchBot](https://launchbot.io/) to help lower these barriers to entry.  Launchbot is a desktop client that provides three essential services:
+
+* Discovery.  People creating content can easily list their projects in a central index to make the discoverable.  A project is just a git repository with a Dockerfile that describes the machine image.  The Dockerfile also needs a few [labels that LaunchBot uses when starting the project](http://launchbot.io/docs/tutorial/publishing-content-to-launchbot/).
+* Git functionality.  LaunchBot enables users to easily clone and manage content projects.  Once cloned, the UI supports the essential git workflow of branching, committing (or stashing), and pulling and pushing to remote repositories.
+* Docker functionality.  Finally, LauncBot can build and deploy the project to your a local Docker engine so that you can have a running container.  It establishes a volume mount from the container back to your project directory so that all changes made as you edit the notebook are saved into the local project directory.  
 
 <img width="100%" src="images/launchbot-client.gif"/>
 
-### Support in Safari
+LaunchBot's key advantages include:
+
+* No need for new training.  Launchbot provides a layer of command line tools like git and docker, reducing the overall learning curve required for using Jupyter projects.  While you can certainly (and should!) learn the individual commands, LaunchBot allows users of all levels to quickly and easily get started with new content.
+* No need for central IT support or operations.  Deploying the container runtime on the local machine via Docker for Mac (and soon Docker for Windows) reduces the need for a centralized system like JupyterHub, which requires a skilled IT team to install and operate.
+*  Automation without lock-in.  Launchbot automates commands that you could type yourself.  There is nothing it does that could not be done by someone with sufficient training in the underlying tools, so you have no fear of lock-in as you might with some pure cloud providers.
+
+### Safari: The Platform for Publishing with Jupyter
+
+THIS IS THE SECTION WHERE I TIE ALL THIS INTO SAFARI
 
 * [Assessments](https://www.oreilly.com/learning/why-self-assessments-improve-learning)
