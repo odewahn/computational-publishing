@@ -8,7 +8,7 @@ The reason?  Jupyter is one of the first digital *authoring* tools, as opposed t
 
 <img width="60%" src="images/explorable-explanations.gif"/>
 
-Brett Victor / [Explorable Explanations](http://worrydream.com/ExplorableExplanations/)
+(Brett Victor / [Explorable Explanations](http://worrydream.com/ExplorableExplanations/))
 
 As we [surveyed the landscape of tools](http://odewahn.github.io/patterns-of-code-as-media/www/introduction.html), the Jupyter ecosystem has emerged as the leading toolset that addresses many thorny issues:
 
@@ -118,11 +118,9 @@ The Jupyter dependencies consist of basically everything required for the Jupyte
 
 #### Content Dependencies
 
-In addition to the dependencies required to run the notebook application itself, a content project will often require a number of OS and language specific dependencies that are unique to the topic under consideration.  For example, if you're writing about machine learning with Python, you might require word2vec, nltk, or scikit-learn.
+In addition to the dependencies required to run the notebook application itself, a content project will often require a number of OS and language specific dependencies that are unique to the topic under consideration.  For example, if you're writing about machine learning with Python, you might require word2vec, nltk, and scikit-learn.
 
-Generally, installing these packages requires an OS-specific solution (like `apt`) or a language-specific package manager (like `conda`).  
-
-The following table shows just a few of the many options a project might require.
+Generally, installing these packages requires an OS-specific solution and a language-specific package manager.  The following table summarize the many choices here:  
 
 | Platform  | Packaging System      |
 |-----------|-----------------------|
@@ -140,22 +138,20 @@ The Jupyter community has begun to standardize on [Docker](https://www.docker.co
 
 <img width="100%" src="images/docker-stacks.png"/>
 
-_Jupyter Project/[Docker Stacks](https://github.com/jupyter/docker-stacks/)_
+(Jupyter Project/[Docker Stacks](https://github.com/jupyter/docker-stacks/))
 
 Using the Docker Stacks as a base image, a user can easily layer on content-specific dependencies into a Dockerfile with a few simple commands.  Here's an example:
 
 ```
 FROM jupyter/scipy-notebook:latest
 
+# Install an OS dependency with apt
 USER root
-# Install content-specific dependencies
-# ffmpeg is no longer available in Jesse: https://wiki.debian.org/ffmpeg
-# However, it is in backports
-# This Dockerfile installs it; from https://hub.docker.com/r/themylogin/docker-ffmpeg/~/dockerfile/
-RUN sed -i "s/jessie main/jessie main contrib non-free/" /etc/apt/sources.list
-RUN echo "deb http://http.debian.net/debian jessie-backports main contrib non-free" >> /etc/apt/sources.list
 RUN apt-get update && apt-get install -y ffmpeg
 USER jovyan
+
+# Install a language dependency with pip
+RUN pip install -y word2vec
 
 # Expose the notebook port
 EXPOSE 8888
