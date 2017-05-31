@@ -1,7 +1,7 @@
 # Computational Publishing with Jupyter
 
 <hr/>
-*This is draft for an article I'm working on for O'Reilly Media about the Jupyter Publishing landscape.  If you have any thoughts you'd care to share, please post an issue at [odewahn/computational-publishing](https://github.com/odewahn/computational-publishing).
+This is draft for an article I'm working on for O'Reilly Media about the Jupyter Publishing landscape.  If you have any thoughts you'd care to share, please post an issue at [odewahn/computational-publishing](https://github.com/odewahn/computational-publishing).
 <hr/>
 
 As first described in [Embracing Jupyter Notebooks at O'Reilly](https://www.oreilly.com/ideas/jupyter-at-oreilly), Jupyter is a critical tool.  Time has only strengthened this conviction -- I'd wager that Jupyter is on the shortlist for the most important tool for technical publishers since the Laser Writer and Aldus PageMaker.
