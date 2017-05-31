@@ -8,13 +8,13 @@ As first described in [Embracing Jupyter Notebooks at O'Reilly](https://www.orei
 
 But, perhaps more importantly, Jupyter is critical not just for capital P "Publishing" and "Publishers".  It's useful in any content where people need to analyze data and share their conclusions.  In other words, people in nearly all job categories that involve making and sharing decisions.
 
-The reason?  Jupyter is one of the first computation-native *authoring* tools, as opposed to a bespoke software development process, that delivers on Seymour Papert's [constructivist](http://www.papert.org/articles/SituatingConstructionism.html) vision. Explored in a modern digital context in Brett Victor's seminal 2011 essay [Explorable Explanations](http://worrydream.com/ExplorableExplanations/), as well as [Lorena Barba](http://lorenabarba.com/)'s vision of [computable content](https://bids.berkeley.edu/events/computational-thinking-and-pedagogy-computable-content), Papert and hit intellectual descendants convincingly argue that people understand and learn best by actively making and doing, versus passively reading, listening, or watching.  
+The reason?  Jupyter is one of the first computation-native *authoring* tools, as opposed to a bespoke software development process, that delivers on Seymour Papert's [constructivist](http://www.papert.org/articles/SituatingConstructionism.html) vision. Explored in a modern digital context in Brett Victor's seminal 2011 essay [Explorable Explanations](http://worrydream.com/ExplorableExplanations/), as well as [Lorena Barba](http://lorenabarba.com/)'s vision of [computable content](https://bids.berkeley.edu/events/computational-thinking-and-pedagogy-computable-content), Papert and his intellectual descendants convincingly argue that people understand and learn best by actively making and doing, versus passively reading, listening, or watching.  
 
 <img width="60%" src="images/explorable-explanations.gif"/>
 
 (Brett Victor / [Explorable Explanations](http://worrydream.com/ExplorableExplanations/))
 
-As we [surveyed the landscape of tools](http://odewahn.github.io/patterns-of-code-as-media/www/introduction.html), the Jupyter ecosystem has emerged as the leading toolset that addresses many thorny issues:
+As we [surveyed the landscape of tools](http://odewahn.github.io/patterns-of-code-as-media/www/introduction.html), the Jupyter ecosystem has emerged as the leading toolset that addresses many thorny issues involved in creating this kind of rich content:
 
 * Simple support for new interaction models.  Jupyter provides a plug-in architecture that allows the community to easily add new features, such as plotting, mapping, or data visualization.
 * Mixed video, text, and assessment.  A Jupyter document can consist of a rich set of media of all types.  Basically, anything that run in a browser will run in Jupyter.
