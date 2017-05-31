@@ -7,6 +7,7 @@ But, perhaps more importantly, Jupyter in critical not just for Publishing and P
 The reason?  Jupyter is one of the first digital *authoring* tools, as opposed to a bespoke software development process, that delivers on Seymour Papert's [constructivist](http://www.papert.org/articles/SituatingConstructionism.html) vision. Explored in a modern digital context in Brett Victor's seminal 2011 essay [Explorable Explanations](http://worrydream.com/ExplorableExplanations/), as well as [Lorena Barba](http://lorenabarba.com/)'s vision of [computable content](https://bids.berkeley.edu/events/computational-thinking-and-pedagogy-computable-content), Papert argues that people understand and learn best by actively making and doing, versus passively reading, listening, or watching.  
 
 <img width="60%" src="images/explorable-explanations.gif"/>
+
 Brett Victor / [Explorable Explanations](http://worrydream.com/ExplorableExplanations/)
 
 As we [surveyed the landscape of tools](http://odewahn.github.io/patterns-of-code-as-media/www/introduction.html), the Jupyter ecosystem has emerged as the leading toolset that addresses many thorny issues:
@@ -17,19 +18,19 @@ As we [surveyed the landscape of tools](http://odewahn.github.io/patterns-of-cod
 * Collaboration.  With git and github, you can package your content and all assets and post them to the many public git hosting services, such as GitHub, BitBucket, or GitLab.
 * Multi-language support.  Jupyter's kernel-based design means that new languages and services are relatively easy to incorporate.
 * Discovery and citation.  Services like [Zenodo](https://zenodo.org/) make it simple to assign DOIs to Notebook content so that they can be cited in scholarly publications.
-* Reproducibility and preservation.  You need to only add a Dockerfile or some other mechanism to specify the project's dependencies (such as the appropriate Ansible playbooks) in order to fully recreate the environment required for the Notebook content to run.  And, since these are stored as Git files, it is simple to keep the content available so that you can reconstruct at any time, as opposed to keeping the running environment.
+* Reproducibility and preservation.  You need to only add a Dockerfile (or an equivalent tool, like Ansible playbooks) to specify the project's dependencies in order to fully recreate the environment required for the Notebook content to run.  And, since these are stored as Git files, it is simple to keep the content available so that you can reconstruct at any time, as opposed to keeping the running environment.
 
 ### Challenges
 
-Clearly, Jupyter provides a host of benefits and opportunities.  However, despite the promise, it's widespread adoption outside the programming, scientific, and data science community has been hindered by its relatively high barriers to entry of the overall ecosystem.
+Clearly, Jupyter provides a host of benefits and opportunities.  However, despite the promise, its widespread adoption outside the programming, scientific, and data science community has been hindered by the relatively high barriers to entry of the overall ecosystem.
 
 As a tool built by hackers for hackers, realizing the full potential of Jupyter requires the user to understand several tools typically used in software engineering.  For authors used to working in Word or Google Docs, Jupyter's reliance on Git, GitHub, package managers, and software configuration tools can be a overwhelming.  The gap is magnified when it's applied outside of a purely technical area, such as biology, economics, journalism, or library sciences.
 
-In addition to the steep learning curve, our experience in trying to build a robust workflow for publishing with Jupyter indicates that even very technical and experienced authors have a hard time creating reproducible environments.  This usually manifests in a broken library or call within a notebooks (i.e., the content uses something that is not on the base image).
+In addition to the steep learning curve, our experience in trying to build a robust workflow for publishing with Jupyter indicates that even very technical and experienced authors have a hard time creating reproducible environments.  This usually manifests in a broken library or call within a notebooks (i.e., the content uses something that is not on the base image).  "Works on my machine" is not just for developers any more.
 
 ## A Model for Computational Publishing
 
-We've developed a four-part model to help us realize Jupyter's potential:
+To understand how to tackle the challege of building a publishing program around Jupyter, I've developed a four-part model to understand the ecosystem:
 
 <img width="100%" src="images/computational-publishing-model.png"/>
 
@@ -138,6 +139,7 @@ The following table shows just a few of the many options a project might require
 The Jupyter community has begun to standardize on [Docker](https://www.docker.com/) as a way to represent a machine image.  The [Docker stacks](https://github.com/jupyter/docker-stacks) project, perhaps the most visible manifestation of this convergence, is a set of increasingly specialized layers of Docker images that for a variety of computing scenarios.
 
 <img width="100%" src="images/docker-stacks.png"/>
+
 _Jupyter Project/[Docker Stacks](https://github.com/jupyter/docker-stacks/)_
 
 Using the Docker Stacks as a base image, a user can easily layer on content-specific dependencies into a Dockerfile with a few simple commands.  Here's an example:
