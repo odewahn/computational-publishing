@@ -188,7 +188,7 @@ Quadrant 2 represents a multiuser environment deployed in the user's own datacen
 
 Quadrant 3 is for a single user syste running on a VM or container solution on a local laptop, such as [Docker for Mac](https://docs.docker.com/docker-for-mac/) or [VirtualBox](https://www.virtualbox.org/manual/ch01.html).  The advantage of this approach is that a user can easily build and deploy an image on his own laptop with just a single Dockerfile (if Docker is used as described in the previous section).  The downside is that it can take an extra level of training on the part of the user to understand the software stacks involved to operate it effectively.
 
-Finally, Quadrant 4 is for multiuser solutions in a pure cloud. The best examples are Microsoft's [Azure Notebooks](https://notebooks.azure.com/)and the [Domino DataLab](https://www.dominodatalab.com/).  The advantag of these solutions is that they provide a turnkey way to easily provide a large user population with notebooks, but the downside is (often) expense, vendor lock-in, and (often) the inability to use git in the workflow.
+Finally, Quadrant 4 is for multiuser solutions in a pure cloud. The best examples are Microsoft's [Azure Notebooks](https://notebooks.azure.com/)and the [Domino DataLab](https://www.dominodatalab.com/).  The advantage of these solutions is that they provide a turnkey way to easily provide a large user population with notebooks, but the downside is (often) expense, vendor lock-in, and (often) the inability to use git in the workflow.
 
 ### File Sharing
 
