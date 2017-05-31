@@ -2,9 +2,11 @@
 
 As first described in [Embracing Jupyter Notebooks at O'Reilly](https://www.oreilly.com/ideas/jupyter-at-oreilly), Jupyter is a critical tool.  Time has only strengthened this conviction -- I'd wager that Jupyter is on the shortlist for the most important tool for technical publishers since the Laser Writer and Aldus PageMaker.
 
+But, perhaps more critically, Jupyter in not critical just for publishing and publishers.  It's useful in any content where people need to analyze data and share their conclusions.  In other words, people in nearly all  job categories that involve making decisions are potential Jupyter users.
+
 The reason?  Jupyter is one of the first digital *authoring* tools, as opposed to a bespoke software development process, that delivers on Seymour Papert's [constructivist](http://www.papert.org/articles/SituatingConstructionism.html) vision.
 
-Papert's ideas, explored in a modern digital context in Brett Victor's seminal 2011 essay [Explorable Explanations](http://worrydream.com/ExplorableExplanations/), as well as [Lorena Barba](http://lorenabarba.com/)'s vision of [computable content](https://bids.berkeley.edu/events/computational-thinking-and-pedagogy-computable-content), posits that people learn best by actively making and doing, versus passively reading, listening, or watching.  
+Papert's ideas, explored in a modern digital context in Brett Victor's seminal 2011 essay [Explorable Explanations](http://worrydream.com/ExplorableExplanations/), as well as [Lorena Barba](http://lorenabarba.com/)'s vision of [computable content](https://bids.berkeley.edu/events/computational-thinking-and-pedagogy-computable-content), posits that people understand and learn best by actively making and doing, versus passively reading, listening, or watching.  
 
 <img width="100%" src="images/explorable-explanations.gif"/>
 _Brett Victor / [Explorable Explanations](http://worrydream.com/ExplorableExplanations/)_
@@ -18,8 +20,6 @@ As we [surveyed the landscape of tools](http://odewahn.github.io/patterns-of-cod
 * Multi-language support.  Jupyter's kernel-based design means that new languages and services are relatively easy to incorporate.
 * Discovery and citation.  Services like [Zenodo](https://zenodo.org/) make it simple to assign DOIs to Notebook content so that they can be cited in scholarly publications.
 * Reproducibility and preservation.  You need to only add a Dockerfile or some other mechanism to specify the project's dependencies (such as the appropriate Ansible playbooks) in order to fully recreate the environment required for the Notebook content to run.  And, since these are stored as Git files, it is simple to keep the content available so that you can reconstruct at any time, as opposed to keeping the running environment.
-
-SOMETHING THAT TIES THIS BEYOND PUBLISHING TO A GENERAL SET OF COLBORATION AND SHARING IN A COMPUTATION-HEAVY ENVIRONMENT.
 
 ### Challenges
 
@@ -213,9 +213,3 @@ LaunchBot's key advantages include:
 * No need for new training.  Launchbot provides a layer of command line tools like git and docker, reducing the overall learning curve required for using Jupyter projects.  While you can certainly (and should!) learn the individual commands, LaunchBot allows users of all levels to quickly and easily get started with new content.
 * No need for central IT support or operations.  Deploying the container runtime on the local machine via Docker for Mac (and soon Docker for Windows) reduces the need for a centralized system like JupyterHub, which requires a skilled IT team to install and operate.
 *  Automation without lock-in.  Launchbot automates commands that you could type yourself.  There is nothing it does that could not be done by someone with sufficient training in the underlying tools, so you have no fear of lock-in as you might with some pure cloud providers.
-
-### Safari: The Platform for Publishing with Jupyter
-
-THIS IS THE SECTION WHERE I TIE ALL THIS INTO SAFARI
-
-* [Assessments](https://www.oreilly.com/learning/why-self-assessments-improve-learning)
