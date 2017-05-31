@@ -6,7 +6,7 @@ The reason?  Jupyter is one of the first digital *authoring* tools, as opposed t
 
 Papert's ideas, explored in a modern digital context in Brett Victor's seminal 2011 essay [Explorable Explanations](http://worrydream.com/ExplorableExplanations/), as well as [Lorena Barba](http://lorenabarba.com/)'s vision of [computable content](https://bids.berkeley.edu/events/computational-thinking-and-pedagogy-computable-content), posits that people learn best by actively making and doing, versus passively reading, listening, or watching.  
 
-<img src="images/explorable-explanations.gif"/>
+<img width="100%" src="images/explorable-explanations.gif"/>
 _Brett Victor / [Explorable Explanations](http://worrydream.com/ExplorableExplanations/)_
 
 As we [surveyed the landscape of tools](http://odewahn.github.io/patterns-of-code-as-media/www/introduction.html), the Jupyter ecosystem has emerged as the leading toolset that addresses many thorny issues:
@@ -142,7 +142,7 @@ The Jupyter community has begun to standardize on [Docker](https://www.docker.co
 <img width="100%" src="images/docker-stacks.png"/>
 _Jupyter Project/[Docker Stacks](https://github.com/jupyter/docker-stacks/)_
 
-Using the Docker Stacks as a base image, a user can easily layer on content-specific dependencies into the Dockerfile with a few simple commands.  For example:
+Using the Docker Stacks as a base image, a user can easily layer on content-specific dependencies into a Dockerfile with a few simple commands.  Here's an example:
 
 ```
 FROM jupyter/scipy-notebook:latest
@@ -165,15 +165,41 @@ CMD jupyter notebook --no-browser --port 8888 --ip=*
 
 ```
 
-Combining the right base image with the language/OS-specific package managers in the Dockerfile is quickly emerging as a defacto standard in the community for specifying a project's machine image. 
+Combining the right base image with the language/OS-specific package managers in the Dockerfile is quickly emerging as a defacto standard in the community for specifying a project's machine image.  
+
+As an additional benefit, adding the  Dockerfile to the project creates a simple way to link the machin image to the content in a way that is simple to version and track using git.
 
 ### Runtime Engine
 
+Although important, merely specifying a machine image is not enough.  In order to use a project, one must also have a running process that runs the Notebook application.
+
+The following figure breaks some of the many possible solutions:
+
 <img width="100%" src="images/container-runtime.png"/>
+
+The figure is broken down along two major axes:
+
+* Whether the runtime is for a single-user of multi-users
+* Whether the runtime is based on a local machine, or the cloud
+
+In Quadrant 1, we have single user solution running on a host machine, such as a local laptop.  This scenario is generally for the user who installs jupyter using Conda on his or her laptop, and then uses conda (or pip) to install the content specific dependencies.  While this is a relatively simple setup, it makes it difficult to share the setup for the computing environment, and often requires an additional isolation tool (like [virtualenv](https://virtualenv.pypa.io/en/stable/)) to isolate the different version of libraries and python versions across content projects.
+
+Quadrant 2 represents a multiuser environment deployed in the user's own datacenter or cloud account.  Solutions like [JupyterHub](https://github.com/jupyterhub/jupyterhub) or [Binder](http://mybinder.org/) make it simple for a central adminstrator ot IT organization to provide a "notebook on demand," eliminating the need for a complex local install.  The downside to this approach is that it requires a central administration with the expertise to install and operate the cluster.
+
+Quadrant 3 is for a single user syste running on a VM or container solution on a local laptop, such as [Docker for Mac](https://docs.docker.com/docker-for-mac/) or [VirtualBox](https://www.virtualbox.org/manual/ch01.html).  The advantage of this approach is that a user can easily build and deploy an image on his own laptop with just a single Dockerfile (if Docker is used as described in the previous section).  The downside is that it can take an extra level of training on the part of the user to understand the software stacks involved to operate it effectively.
+
+Finally, Quadrant 4 is for multiuser solutions in a pure cloud. The best examples are Microsoft's [Azure Notebooks](https://notebooks.azure.com/)and the [Domino DataLab](https://www.dominodatalab.com/).  The advantag of these solutions is that they provide a turnkey way to easily provide a large user population with notebooks, but the downside is (often) expense, vendor lock-in, and (often) the inability to use git in the workflow.
+
 
 ### File Sharing
 
+The final aspect of the computational publishing workflow is a way to propogate changes made to the content within the running container back to the source content.  In other words, we want to ensure that when a user makes a change in the notebook and hits save, that those changes are made to the local git repo, and not to an ephemeral filesystem in a container.  
+
+Docker provides a number of ways to do this, such as [volume mounting](https://docs.docker.com/engine/tutorials/dockervolumes/), and cloud solutions provide their own storage backends.  Some solutions, such as [Binder](http://mybinder.org/), do not persist changes automatically.
+
 ### LaunchBot: Lowering the barriers to entry
+
+<img width="100%" src="images/launchbot-client.gif"/>
 
 ### Support in Safari
 
