@@ -2,7 +2,7 @@
 
 As first described in [Embracing Jupyter Notebooks at O'Reilly](https://www.oreilly.com/ideas/jupyter-at-oreilly), Jupyter is a critical tool.  Time has only strengthened this conviction -- I'd wager that Jupyter is on the shortlist for the most important tool for technical publishers since the Laser Writer and Aldus PageMaker.
 
-But, perhaps more critically, Jupyter in not critical just for publishing and publishers.  It's useful in any content where people need to analyze data and share their conclusions.  In other words, people in nearly all  job categories that involve making decisions are potential Jupyter users.
+But, perhaps more importantly, Jupyter in critical not just for Publishing and Publishers.  It's useful in any content where people need to analyze data and share their conclusions.  In other words, people in nearly all job categories that involve making decisions are potential Jupyter users.
 
 The reason?  Jupyter is one of the first digital *authoring* tools, as opposed to a bespoke software development process, that delivers on Seymour Papert's [constructivist](http://www.papert.org/articles/SituatingConstructionism.html) vision.
 
