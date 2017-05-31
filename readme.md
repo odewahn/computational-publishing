@@ -104,9 +104,26 @@ Formats include 'html', 'latex', 'markdown', 'pdf', 'python', 'rst', 'script', '
 
 ### Machine Image
 
+Once you have a system for managing the source content, the next element in the computational publishing process is to build a machine image that describes the environment required to run the content.  This is a key difference from other publishing processes, where the content is static: for Jupyter to work, you must be able to reproduce a working environment.
+
+A `machine image` is a way to create a complete description of a computing environment.  In the context of computational publishing, this means specifying to distinct sets of dependencies:
+
+* Jupyter dependencies
+* Content-specific dependencies
+
+While there are still other alternatiecs, such a [Rocket](https://coreos.com/rkt) from CoreOS, the Jupyter community is generally settling around Docker as a standard format for representing a machine image.
+
 #### Jupyter Dependencies
 
+The Jupyter dependencies consist of basically everything required for the Jupyter Notebook application itself.  Generally, this is the satisfied by installing the [Anaconda](https://www.continuum.io/downloads) framework from [Continuum Analytics](https://www.continuum.io).
+
 #### Content Dependencies
+
+In addition to the dependencies required to run the notebook application itself, a content project will often require a number of OS and language specific dependencies that are unique to the topic under consideration.  For example, if you're writing about machine learning with Python, you might require word2vec, nltk, or scikit-learn.
+
+Generally, installing these packages requires an OS-specific solution (like `apt`) or a language-specific package manager (like `conda`).  
+
+The following table shows just a few of the many options a project might require.
 
 | Platform  | Packaging System      |
 |-----------|-----------------------|
@@ -118,11 +135,37 @@ Formats include 'html', 'latex', 'markdown', 'pdf', 'python', 'rst', 'script', '
 |Ruby       | gem                   |
 
 
-#### Docker as a general solution
+#### Docker as an Emerging Solution
 
-https://github.com/jupyter/docker-stacks
+The Jupyter community has begun to standardize on [Docker](https://www.docker.com/) as a way to represent a machine image.  The [Docker stacks](https://github.com/jupyter/docker-stacks) project, perhaps the most visible manifestation of this convergence, is a set of increasingly specialized layers of Docker images that for a variety of computing scenarios.
 
 <img width="100%" src="images/docker-stacks.png"/>
+_Jupyter Project/[Docker Stacks](https://github.com/jupyter/docker-stacks/)_
+
+Using the Docker Stacks as a base image, a user can easily layer on content-specific dependencies into the Dockerfile with a few simple commands.  For example:
+
+```
+FROM jupyter/scipy-notebook:latest
+
+USER root
+# Install content-specific dependencies
+# ffmpeg is no longer available in Jesse: https://wiki.debian.org/ffmpeg
+# However, it is in backports
+# This Dockerfile installs it; from https://hub.docker.com/r/themylogin/docker-ffmpeg/~/dockerfile/
+RUN sed -i "s/jessie main/jessie main contrib non-free/" /etc/apt/sources.list
+RUN echo "deb http://http.debian.net/debian jessie-backports main contrib non-free" >> /etc/apt/sources.list
+RUN apt-get update && apt-get install -y ffmpeg
+USER jovyan
+
+# Expose the notebook port
+EXPOSE 8888
+
+# Start the notebook server
+CMD jupyter notebook --no-browser --port 8888 --ip=*
+
+```
+
+Combining the right base image with the language/OS-specific package managers in the Dockerfile is quickly emerging as a defacto standard in the community for specifying a project's machine image. 
 
 ### Runtime Engine
 
