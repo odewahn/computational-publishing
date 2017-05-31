@@ -167,9 +167,9 @@ As an additional benefit, adding the  Dockerfile to the project creates a simple
 
 ### Runtime Engine
 
-Although important, merely specifying a machine image is not enough.  In order to use a project, one must also have a running process that runs the Notebook application.
+Although important, merely specifying a machine image is not enough.  In order to use a project, you also need a container that runs the Notebook application itself.
 
-The following figure breaks some of the many possible solutions:
+There are many options for running the notebook. The following figure breaks some of the many possible approaches:
 
 <img width="100%" src="images/container-runtime.png"/>
 
@@ -180,11 +180,11 @@ The figure is broken down along two major axes:
 
 In Quadrant 1, we have single user solution running on a host machine, such as a local laptop.  This scenario is generally for the user who installs Jupyter using Conda on his or her laptop, and then uses Conda (or pip) to install the content specific dependencies.  While this is a relatively simple setup, it makes it difficult to share the setup for the computing environment, and often requires an additional isolation tool (like [virtualenv](https://virtualenv.pypa.io/en/stable/)) to isolate the different version of libraries and python versions across content projects.
 
-Quadrant 2 represents a multiuser environment deployed in the user's own datacenter or cloud account.  Solutions like [JupyterHub](https://github.com/jupyterhub/jupyterhub) or [Binder](http://mybinder.org/) make it simple for a central adminstrator ot IT organization to provide a "notebook on demand," eliminating the need for a complex local install.  The downside to this approach is that it requires a central administration with the expertise to install and operate the cluster.
+Quadrant 2 represents a multiuser environment deployed in the user's own datacenter or cloud account.  Solutions like [JupyterHub](https://github.com/jupyterhub/jupyterhub) or [Binder](http://mybinder.org/) make it simple for a central administrator or IT organization to provide a "notebook on demand," eliminating the need for a complex local install.  The downside to this approach is that it requires a central administration with the expertise to install and operate the cluster.
 
-Quadrant 3 is for a single user syste running on a VM or container solution on a local laptop, such as [Docker for Mac](https://docs.docker.com/docker-for-mac/) or [VirtualBox](https://www.virtualbox.org/manual/ch01.html).  The advantage of this approach is that a user can easily build and deploy an image on his own laptop with just a single Dockerfile (if Docker is used as described in the previous section).  The downside is that it can take an extra level of training on the part of the user to understand the software stacks involved to operate it effectively.
+Quadrant 3 is for a single user system running on a VM or container solution on a local laptop, such as [Docker for Mac](https://docs.docker.com/docker-for-mac/) or [VirtualBox](https://www.virtualbox.org/manual/ch01.html).  The advantage of this approach is that a user can easily build and deploy an image on his own laptop with just a single Dockerfile (if Docker is used as described in the previous section).  The downside is that it can take an extra level of training on the part of the user to understand the software stacks involved to operate it effectively.
 
-Finally, Quadrant 4 is for multiuser solutions in a pure cloud. The best examples are Microsoft's [Azure Notebooks](https://notebooks.azure.com/)and the [Domino DataLab](https://www.dominodatalab.com/).  The advantage of these solutions is that they provide a turnkey way to easily provide a large user population with notebooks, but the downside is (often) expense, vendor lock-in, and (often) the inability to use git in the workflow.
+Finally, Quadrant 4 is for multiuser solutions in a pure cloud. The best examples are Microsoft's [Azure Notebooks](https://notebooks.azure.com/) and the [Domino DataLab](https://www.dominodatalab.com/).  The advantage of these solutions is that they provide a turnkey way to easily provide a large user population with notebooks, but the downside is (often) expense, vendor lock-in, and (often) the inability to use git in the workflow.
 
 ### File Sharing
 
@@ -194,9 +194,9 @@ Docker provides a number of ways to do this, such as [volume mounting](https://d
 
 ### LaunchBot: Lowering the Barriers to Entry for Computational Publishing
 
-As the previous section illustrates, the Jupyter Notebook application is just one part of the overall publishing process.  To be effective, a user must also understand git and GitHub, dependency management, and other disjointed tools.
+As the previous section illustrates, the Jupyter Notebook application itself is just one part of the overall publishing process.  To be effective, a user must also understand git and GitHub, dependency management, and a variety of other disjointed tools.
 
-O'Reilly has been incubating a new tool called [LaunchBot](https://launchbot.io/) to help lower these barriers to entry.  Launchbot is a desktop client that provides three essential services:
+I've been incubating a new tool at O'Reilly called [LaunchBot](https://launchbot.io/) to help lower these barriers to entry.  Launchbot is a desktop client that provides three essential services:
 
 * Discovery.  People creating content can easily list their projects in a central index to make the discoverable.  A project is just a git repository with a Dockerfile that describes the machine image.  The Dockerfile also needs a few [labels that LaunchBot uses when starting the project](http://launchbot.io/docs/tutorial/publishing-content-to-launchbot/).
 * Git functionality.  LaunchBot enables users to easily clone and manage content projects.  Once cloned, the UI supports the essential git workflow of branching, committing (or stashing), and pulling and pushing to remote repositories.
