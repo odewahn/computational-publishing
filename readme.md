@@ -50,15 +50,31 @@ The source content is largely about how you manage the source files that make up
 * Structured markup
 * Transformation engines
 
-The following sections explore each in a bit more detail.
+The following sections explore each in more detail.
 
 #### Version control in git
 
-* Git flow
-* GitHub
-* Diffs
+The [git version control system](https://git-scm.com/) should be the basis of any modern publishing workflow. Git provides a number of benefits, including:
+
+* Change tracking.  Git can track even the tiniest change to every file, allowing you to precisely identify the every commit project commit.
+* Collaboration.  Tools like GitHub, BitBucket, or GitLab allow you to easily share project repositories at whatever granularity of security you desire.
+* Access to GitHub.  Especially in technical contexts, it is essential to be able to publish on GitHub, which is increasingly becoming the main place for sharing content and finding collaborators.
+
+Despite its reputation, working with git and GitHub (or BitBucket, or GitLab) is fairly straightforward:
+
+* *Clone*.  Begin by cloning the git repository to their local machine using its _git URL_.  The git URL is a bit like a web url, but can have two main formats: an `ssh` format and an `https` format.  Also, since git is a distributed format, the same repository can be published at multiple places and have different URLs.  This is perhaps one of the hardest concepts to grasp. Unlike a google doc, there is no single source of truth.  Rather, you work locally, and then "push" the content back to its origin, where you reconcile any conflicting changes
+* *Create a branch*.  Once you've cloned a repo, you next start a new branch.  A branch should typically represent a logical unit of work, like a copyedit or a description.
+* *Add files and commit*.  Assuming you're happy with the work you've made in your branch.  You add and commit your changed files.
+* *Push changed branch back to your remote*.  Once you've committed your files, you push the local changes back up to the "origin" from which you cloned the project.
+* *Open a pull request*. Once you've pushed your changes, you submit a pull request which alerts other collaborators to your change.  They can then review it and comment, and (once everyone is satisfied) merge your changes back into the "master" branch.
+
+In general, this is called the the [github workflow](https://guides.github.com/introduction/flow/), and works best when you have multiple collaborators on a  project.
+
+If you're early on the project, or just don't want to bother with branching, you can always just clone a repo and work directly in master.  The main issue with this approach is that it becomes harder to unwind complex changes, but if you're thoughtful about your work process, you can usually get quite far this way.
 
 #### Structured Markup
+
+The next core principle is to use structured markup in your content.  You have a number of options to choose from:
 
 * [Markdown](https://daringfireball.net/projects/markdown/).  One of the original simple text markup languages, Markdown is a bit like wirting a glorified email, where lists are bullets, bold is denoted by asterisks, and headers by a "#" symbol.  Markdown is great for shorter articles.
 * [GitHub flavored markdown](https://guides.github.com/features/mastering-markdown/).  The basic markdown syntax, but with some extra features for marking up code, tasks, tables, and other more complex strutures.
@@ -67,22 +83,18 @@ The following sections explore each in a bit more detail.
 * [HTMLBook](https://github.com/oreillymedia/HTMLBook).  A set of HTML5 tags and classes developed by O'Reilly Media for publishing.
 * [DocBook](http://docbook.org/).  An XML-based markup language for technical documentation.  It was originally developed at O'Reilly Media in the mid-1990s, but is now part of the  [OASIS](https://www.oasis-open.org/) standards.
 
-Jupyter stores content in a  [json](http://www.json.org/)-based format called [ipynb](https://ipython.org/ipython-doc/3/notebook/nbformat.html).  
-
-
+Jupyter stores content in a  [json](http://www.json.org/)-based format called [ipynb](https://ipython.org/ipython-doc/3/notebook/nbformat.html).  A notebook document consists of an array of cells that (generally) contain either markdown or code (and the output of the code), along with some additional metadata.
 
 #### Transformation engines
 
-
-https://www.staticgen.com/
+One of the key reasons for using a structured markup is to enable the third key principle: using a transformation engine to convert the content from its source form into a format suitable for distribution.  [Static site generators](https://www.staticgen.com/), which typically convert repositories posted to GitHub into a website, are the most common type of transformation engines:
 
 * [Jekyll](http://jekyllrb.com/)
 * [Hugo](http://gohugo.io/)
 * [Hexo](https://www.staticgen.com/hexo)
 * [GitBook](https://www.gitbook.com/)
 
-
-Jupyter comes with a command-line tool called [nbonvert](https://nbconvert.readthedocs.io/en/latest/) that can transform the `ipynb` format to a variety of other formats:
+Jupyter's [nbonvert](https://nbconvert.readthedocs.io/en/latest/), a command-line tool called  that can transform the `ipynb` format to a variety of other formats, is the core tool for building transformation engines for the `ipynb` format. Here's an example:
 
 ```
 jupyter nbconvert --to FORMAT notebook.ipynb
